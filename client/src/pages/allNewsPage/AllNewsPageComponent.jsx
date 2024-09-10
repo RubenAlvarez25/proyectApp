@@ -19,12 +19,32 @@ export const AllNewsPageComponent = () => {
       });
   }, []);
 
+  const handleButtonClick = (item) => {
+    console.log(item, "objeto archivado");
+  };
+
   return (
     <div className="div-ppl-allNews">
-      {" "}
-      {data?.map((item, index) => (
-        <h1 key={index}>{item.title}</h1>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data?.map((item, index) => (
+            <tr key={index}>
+              <td>{item.title}</td>
+              <td>
+                <button onClick={() => handleButtonClick(item)}>
+                  Archivar
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <button onClick={() => navigate(-1)}>Volver</button>
     </div>
   );

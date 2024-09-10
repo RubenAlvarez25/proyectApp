@@ -19,11 +19,30 @@ export const NewsArchivedPageComponent = () => {
       });
   }, []);
 
+  const handleButtonClick = (item) => {
+    console.log(item, "borrado");
+  };
+
   return (
     <div className="div-ppl-archivedNews">
-      {archivedNews?.map((item, index) => (
-        <h1>{item.title}</h1>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {archivedNews?.map((item, index) => (
+            <tr key={index}>
+              <td>{item.title}</td>
+              <td>
+                <button onClick={() => handleButtonClick(item)}>Borrar</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <button onClick={() => navigate(-1)}>Volver</button>
     </div>
   );
