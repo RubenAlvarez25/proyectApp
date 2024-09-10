@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getData } from "../../services/news";
+import { getData, updateNew } from "../../services/news";
 
 import "./allNewsPageStyle.scss";
 
@@ -19,8 +19,12 @@ export const AllNewsPageComponent = () => {
       });
   }, []);
 
-  const handleButtonClick = (item) => {
-    console.log(item, "objeto archivado");
+  const handleButtonClick = (item, e) => {
+    e.preventDefault();
+    updateNew(`/updateArchived/${item._id}`);
+    setData((prevData) =>
+      prevData.filter((newsItem) => newsItem._id !== item._id)
+    );
   };
 
   return (
@@ -37,7 +41,7 @@ export const AllNewsPageComponent = () => {
             <tr key={index}>
               <td>{item.title}</td>
               <td>
-                <button onClick={() => handleButtonClick(item)}>
+                <button onClick={(e) => handleButtonClick(item, e)}>
                   Archivar
                 </button>
               </td>

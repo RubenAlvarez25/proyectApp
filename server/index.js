@@ -16,6 +16,8 @@ app.get("/", (req, res) => {
 
 app.use("/", newsRoutes);
 app.use("/getArchivedNews", newsRoutes);
+app.use("/deleteNews/:id", newsRoutes);
+app.use("/updateArchived/:id", newsRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);

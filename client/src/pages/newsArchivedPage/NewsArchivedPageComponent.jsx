@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getData } from "../../services/news";
+import { getData, deleteNew } from "../../services/news";
 
 import "./newsArchivedPageStyle.scss";
 
@@ -20,7 +20,10 @@ export const NewsArchivedPageComponent = () => {
   }, []);
 
   const handleButtonClick = (item) => {
-    console.log(item, "borrado");
+    deleteNew(`/deleteNews/${item._id}`);
+    setArchivedNews(
+      archivedNews.filter((newsItem) => newsItem._id !== item._id)
+    );
   };
 
   return (
