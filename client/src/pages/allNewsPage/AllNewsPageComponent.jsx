@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getData } from "../../services/news";
 
-import "./homePageStyle.scss";
+import "./allNewsPageStyle.scss";
 
-export const HomePageComponent = () => {
+export const AllNewsPageComponent = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    getData(``)
+    getData(`/getNews`)
       .then((result) => {
         setData(result);
       })
@@ -20,10 +20,12 @@ export const HomePageComponent = () => {
   }, []);
 
   return (
-    <div className="div-ppl-home">
-      <h1>BIENVENIDO A LA PAGINA PRINCIPAL</h1>
-      <button onClick={() => navigate(`/allNews`)}>TODAS LAS NOTICIAS</button>
-      <button onClick={() => navigate(`/archived`)}>NOTICIAS ARCHIVADAS</button>
+    <div className="div-ppl-allNews">
+      {" "}
+      {data?.map((item, index) => (
+        <h1 key={index}>{item.title}</h1>
+      ))}
+      <button onClick={() => navigate(-1)}>Volver</button>
     </div>
   );
 };
