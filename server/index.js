@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const connectDB = require("./config/database");
 const newsRoutes = require("./routes/news");
 const app = express();
@@ -15,10 +16,11 @@ app.get("/", (req, res) => {
 });
 
 app.use("/", newsRoutes);
+app.use("/createNews", newsRoutes);
 app.use("/getArchivedNews", newsRoutes);
-app.use("/deleteNews/:id", newsRoutes);
 app.use("/updateArchived/:id", newsRoutes);
+app.use("/deleteNews/:id", newsRoutes);
 
 app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
+  console.log(`http://localhost:${port}`);
 });
