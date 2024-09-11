@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require("express");
 require("dotenv").config();
 const connectDB = require("./config/database");
@@ -22,5 +24,5 @@ app.use("/updateArchived/:id", newsRoutes);
 app.use("/deleteNews/:id", newsRoutes);
 
 app.listen(port, () => {
-  console.log(`http://localhost:${port}`);
+  console.log(`localhost:${port}`);
 });

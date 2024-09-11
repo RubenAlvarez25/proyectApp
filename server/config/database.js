@@ -1,3 +1,5 @@
+"use strict";
+
 const mongoose = require("mongoose");
 
 const mongoURI = process.env.URI_MONGODB;
@@ -8,10 +10,10 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log("Conexión exitosa a la base de datos");
+    console.info("DDBB status 'OK'");
   } catch (error) {
-    console.error("Error al conectar con MongoDB:", error);
-    process.exit(1); // Termina el proceso si la conexión falla
+    console.error("ERR", error);
+    process.exit(1);
   }
 };
 

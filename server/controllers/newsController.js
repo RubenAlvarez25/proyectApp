@@ -1,3 +1,5 @@
+"use strict";
+
 const News = require("../models/News");
 
 class NewsData {
@@ -17,9 +19,7 @@ class NewsData {
 
       await newNews.save();
     } catch (error) {
-      return res
-        .status(500)
-        .json({ mensaje: "Error al crear la noticia", error });
+      console.error(error);
     }
   };
 
@@ -30,7 +30,6 @@ class NewsData {
       res.json(news);
     } catch (error) {
       console.error(err);
-      res.status(500).json({ message: "Error al obtener las noticias" });
     }
   };
 
@@ -42,7 +41,6 @@ class NewsData {
       res.json(archivedNews);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Error al obtener las noticias" });
     }
   };
 
@@ -63,9 +61,7 @@ class NewsData {
 
       await updateNew.save();
     } catch (error) {
-      return res
-        .status(500)
-        .json({ mensaje: "Error al archivar la noticia", error });
+      console.error(error);
     }
   };
 
@@ -75,9 +71,7 @@ class NewsData {
     try {
       const deletedNew = await News.findByIdAndDelete(id);
     } catch (error) {
-      return res
-        .status(500)
-        .json({ mensaje: "Error al eliminar la noticia", error });
+      console.error(error);
     }
   };
 }
