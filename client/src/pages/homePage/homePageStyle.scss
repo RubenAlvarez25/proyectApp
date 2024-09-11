@@ -1,5 +1,14 @@
 .div-ppl-home {
   width: 100%;
-  padding:100px;
-  background-color: bisque;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.form-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
 }

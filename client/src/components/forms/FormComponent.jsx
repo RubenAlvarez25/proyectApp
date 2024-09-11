@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Form, Button, Container } from "react-bootstrap";
+
+import "./formStyle.scss";
 
 const initialValues = {
-    title: '',
-    description: '',
-    content: '',
-    author: ''
-}
+  title: "",
+  description: "",
+  content: "",
+  author: "",
+};
 
-export const FormComponent = ({ onSubmit }) => {
-    const [formData, setFormData] = useState(initialValues);
+export const FormComponent = ({ onSubmit, handleButton }) => {
+  const [formData, setFormData] = useState(initialValues);
 
-    const handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({...formData,[name]: value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -24,13 +26,12 @@ export const FormComponent = ({ onSubmit }) => {
 
   return (
     <Container>
-      <h2>Añadir Noticias</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formTitle">
           <Form.Label>Título</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter news title"
+            placeholder="título"
             name="title"
             value={formData.title}
             onChange={handleChange}
@@ -43,7 +44,7 @@ export const FormComponent = ({ onSubmit }) => {
           <Form.Control
             as="textarea"
             rows={3}
-            placeholder="Enter a short description"
+            placeholder="Descripción"
             name="description"
             value={formData.description}
             onChange={handleChange}
@@ -56,7 +57,7 @@ export const FormComponent = ({ onSubmit }) => {
           <Form.Control
             as="textarea"
             rows={5}
-            placeholder="Enter the content"
+            placeholder="Contenido"
             name="content"
             value={formData.content}
             onChange={handleChange}
@@ -68,18 +69,20 @@ export const FormComponent = ({ onSubmit }) => {
           <Form.Label>Autor</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter author name"
+            placeholder="Autor"
             name="author"
             value={formData.author}
             onChange={handleChange}
             required
           />
         </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <div className="form-buttons">
+          <Button variant="primary" type="submit">
+            Nueva Noticia !
+          </Button>
+          <Button onClick={handleButton}>Ocultar Form</Button>
+        </div>
       </Form>
     </Container>
-  )
-}
+  );
+};

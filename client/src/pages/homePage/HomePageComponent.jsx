@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { createNew } from "../../services/news";
 import { FormComponent } from "../../components/forms/FormComponent";
 
+import { Button } from "react-bootstrap";
 import { Alert } from "react-bootstrap";
 
 import "./homePageStyle.scss";
 
 export const HomePageComponent = () => {
-  const navigate = useNavigate();
-
+  const [formVisible, setFormVisible] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -28,21 +27,28 @@ export const HomePageComponent = () => {
     }, 3000);
   };
 
+  const handleButtonClick = () => {
+    setFormVisible(!formVisible);
+  };
+
   return (
     <>
-      <div className="div-ppl-home">
-        <h1>BIENVENIDO A LA PAGINA PRINCIPAL</h1>
-        <button onClick={() => navigate(`/allNews`)}>TODAS LAS NOTICIAS</button>
-        <button onClick={() => navigate(`/archived`)}>
-          NOTICIAS ARCHIVADAS
-        </button>
-      </div>
       {showAlert && (
         <Alert onClose={() => setShowAlert(false)}>{alertMessage}</Alert>
       )}
-      <div>
-        <FormComponent onSubmit={handleFormSubmit} />
-      </div>
+
+      {formVisible ? (
+        <div className="form-home">
+          <FormComponent
+            onSubmit={handleFormSubmit}
+            handleButton={handleButtonClick}
+          />
+        </div>
+      ) : (
+        <div className="div-ppl-home">
+          <Button onClick={handleButtonClick}>Añadir Noticias</Button>
+        </div>
+      )}
     </>
   );
 };

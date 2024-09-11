@@ -1,0 +1,33 @@
+.navbar-custom {
+  background-color: #f5f5f5;
+  padding: 10px 0;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand-custom {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.navbar-buttons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.navbar-button {
+  background-color: #e60028;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  &:hover {
+    background-color: #cc0021;
+    color: #ffffff;
+    text-decoration: none;
+  }
+}

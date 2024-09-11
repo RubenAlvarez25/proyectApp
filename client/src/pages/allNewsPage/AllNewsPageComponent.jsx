@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getData, updateNew } from "../../services/news";
 
-import { Alert } from 'react-bootstrap';
+import { Alert } from "react-bootstrap";
 
 import "./allNewsPageStyle.scss";
 
@@ -11,19 +11,16 @@ export const AllNewsPageComponent = () => {
 
   const [data, setData] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
-
     getData(`/getNews`)
-
       .then((result) => {
         setData(result);
       })
       .catch((err) => {
         console.log(err);
       });
-
   }, []);
 
   const handleButtonClick = (item, e) => {
@@ -34,7 +31,7 @@ export const AllNewsPageComponent = () => {
       prevData.filter((newsItem) => newsItem._id !== item._id)
     );
 
-    setAlertMessage('Noticia archivada !');
+    setAlertMessage("Noticia archivada !");
     setShowAlert(true);
 
     setTimeout(() => {
@@ -45,33 +42,30 @@ export const AllNewsPageComponent = () => {
   return (
     <>
       <div className="div-ppl-allNews">
-         {showAlert && (
-          <Alert onClose={() => setShowAlert(false)}>
-            {alertMessage}
-          </Alert>
+        {showAlert && (
+          <Alert onClose={() => setShowAlert(false)}>{alertMessage}</Alert>
         )}
-      <table>
-        <thead>
-          <tr>
-            <th>Título</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.map((item, index) => (
-            <tr key={index}>
-              <td>{item.title}</td>
-              <td>
-                <button onClick={(e) => handleButtonClick(item, e)}>
-                  Archivar
-                </button>
-              </td>
+        <table>
+          <thead>
+            <tr>
+              <th>Título</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <button onClick={() => navigate(-1)}>Volver</button>
-    </div>
+          </thead>
+          <tbody>
+            {data?.map((item, index) => (
+              <tr key={index}>
+                <td>{item.title}</td>
+                <td>
+                  <button onClick={(e) => handleButtonClick(item, e)}>
+                    Archivar
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <button onClick={() => navigate("/")}>Volver</button>
+      </div>
     </>
-    
   );
 };
