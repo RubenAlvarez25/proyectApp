@@ -4,12 +4,7 @@ export const createNew = async (path, formData) => {
   try {
     const response = await axios.post(
       `${import.meta.env.VITE_BASE_URL}${path}`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
+      formData
     );
     return response.data;
   } catch (error) {}
