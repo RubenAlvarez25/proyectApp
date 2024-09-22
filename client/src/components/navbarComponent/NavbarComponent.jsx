@@ -10,7 +10,7 @@ export const NavbarComponent = () => {
       <Navbar className="navbar-custom">
         <Container>
           <Navbar.Brand href="/" className="navbar-brand-custom">
-            ALLFOUNDS CRUD
+            ALLFUNDS CRUD
           </Navbar.Brand>
           <div className="navbar-buttons">
             <Button href="/allNews" className="navbar-button">
